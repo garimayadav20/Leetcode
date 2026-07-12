@@ -8,6 +8,8 @@ class Solution {
             StringBuilder temp = new StringBuilder();
             int count = 1;
 
+            
+
             for (int j = 1; j <= ans.length(); j++) {
 
                 if (j < ans.length() && ans.charAt(j) == ans.charAt(j - 1)) {
