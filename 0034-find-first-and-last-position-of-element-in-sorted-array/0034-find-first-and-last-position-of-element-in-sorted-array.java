@@ -1,53 +1,48 @@
 class Solution {
     public int[] searchRange(int[] nums, int target) {
-
-        int first = firstBound(nums, target);
-        int last = lastBound(nums, target);
-        return new int[] { first, last };
+        // int f= first(nums,target);
+        // int l=last(nums,target);
+        return new int[] { first(nums, target), last(nums, target) };
 
     }
 
-    //for left bound
-
-    public int firstBound(int[] nums, int target) {
+    public int first(int nums[], int target) {
         int index = -1;
-        int l = 0;
-        int r = nums.length - 1;
+        int low = 0, high = nums.length - 1;
 
-        while (l <= r) {
-            int mid = l + (r - l) / 2;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
 
-            if (target == nums[mid]) {
-                index = mid;
-                r=mid-1;
-
-            } else if (target < nums[mid]) {
-                r = mid - 1;
-            } else
-                l = mid + 1;
+            if (nums[mid] == target) {
+                index = mid; //then search left
+                high= mid - 1;
+            }
+            else if (target < nums[mid]) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
 
         }
         return index;
     }
 
-    //right bound
-
-    public int lastBound(int[] nums, int target) {
+    public int last(int nums[], int target) {
         int index = -1;
-        int l = 0;
-        int r = nums.length - 1;
+        int low = 0, high = nums.length - 1;
 
-        while (l <= r) {
-           int mid = l + (r - l) / 2;
+        while (low <= high) {
+            int mid = low + (high - low) / 2;
 
-            if (target == nums[mid]) {
+            if (nums[mid] == target) {
                 index = mid;
-                l=mid+1;
-
-            } else if (target > nums[mid]) {
-                l = mid + 1;
-            } else
-                r = mid - 1;
+                low = mid + 1; //then search right
+            }
+             else if (target < nums[mid]) {
+                high = mid - 1;
+            } else {
+                low = mid + 1;
+            }
 
         }
 
